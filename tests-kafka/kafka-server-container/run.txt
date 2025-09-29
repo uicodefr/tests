@@ -1,0 +1,37 @@
+# Kafka broker
+
+podman run -d \
+  -p 9092:9092 \
+  -e "KAFKA_NODE_ID=1" \
+  -e "KAFKA_PROCESS_ROLES=broker,controller" \
+  -e "KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093" \
+  -e "KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://test-kafka-broker:9092,CONTROLLER://test-kafka-broker:9093" \
+  -e "KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER" \
+  -e "KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT" \
+  -e "KAFKA_CONTROLLER_QUORUM_VOTERS=1@test-kafka-broker:9093" \
+  -e "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1" \
+  -e "KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1" \
+  -e "KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1" \
+  -e "KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0" \
+  -e "KAFKA_NUM_PARTITIONS=3" \
+  --cap-add=IPC_LOCK --cap-add=NET_RAW \
+  --network kafka-network \
+  --name test-kafka-broker \
+  apache/kafka:latest
+
+# Avro Schema registry
+
+podman run -d \
+  -p 8081:8081 \
+  -e "SCHEMA_REGISTRY_KAFKA_BROKERS=PLAINTEXT://test-kafka-broker:9092" \
+  -e "SCHEMA_REGISTRY_HOST_NAME=test-kafka-schema-registry" \
+  -e "SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8081" \
+  -e "SCHEMA_REGISTRY_CLIENT_AUTHENTICATION=NONE" \
+  -e "SCHEMA_REGISTRY_DEBUG=true" \
+  --cap-add=IPC_LOCK --cap-add=NET_RAW \
+  --network kafka-network \
+  --name test-kafka-schema-registry \
+  bitnami/schema-registry:latest
+  
+## Just for test
+podman run -d -P --cap-add=IPC_LOCK --cap-add=NET_RAW --network kafka-network --name test_temp_kafka eg_sshd

@@ -1,0 +1,11 @@
+#Fri Sep 26 10:47:12 UTC 2025
+micronaut:
+  application:
+    name: kafka-micronaut
+
+  server:
+    port: 8090
+
+kafka:
+  bootstrap:
+    servers: "localhost:9092"
