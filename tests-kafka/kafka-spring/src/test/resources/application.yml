@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: "kafka-spring"
+
+  kafka:
+    bootstrap-servers: "kafka.fakehost:9092"
+
+logging:
+  level:
+    root: INFO
+    org.apache.kafka: WARN
+    kafka: WARN
+    io.confluent.kafka: WARN
+    org.springframework.kafka: WARN
+    org.apache.zookeeper: WARN
+    state.change.logger: WARN
+
+myapp:
+  kafka:
+    schema-registry: "mock://schema.fakehost:8081"

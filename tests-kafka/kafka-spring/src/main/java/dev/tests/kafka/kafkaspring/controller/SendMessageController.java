@@ -12,8 +12,10 @@ import dev.tests.kafka.kafkaspring.avro.TestCMessage;
 import dev.tests.kafka.kafkaspring.config.KafkaConstants;
 import dev.tests.kafka.kafkaspring.message.TestAMessage;
 import dev.tests.kafka.kafkaspring.message.TestBMessage;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class SendMessageController {
 
     private int keyCounter = 0;
@@ -22,15 +24,6 @@ public class SendMessageController {
     private final KafkaTemplate<String, TestBMessage> kafkaTemplateB;
     private final KafkaTemplate<String, TestCMessage> kafkaTemplateC;
 
-    public SendMessageController(
-            KafkaTemplate<String, TestAMessage> kafkaTemplateA,
-            KafkaTemplate<String, TestBMessage> kafkaTemplateB,
-            KafkaTemplate<String, TestCMessage> kafkaTemplateC
-    ) {
-        this.kafkaTemplateA = kafkaTemplateA;
-        this.kafkaTemplateB = kafkaTemplateB;
-        this.kafkaTemplateC = kafkaTemplateC;
-    }
 
     @GetMapping("sendA")
     public String sendMessageA() {
@@ -56,7 +49,7 @@ public class SendMessageController {
         keyCounter++;
         LocalDateTime now = LocalDateTime.now();
         List<CharSequence> extra = List.of("abc", "def");
-        TestCMessage testMessage = new TestCMessage(keyCounter, now.toString(), now.toEpochSecond(ZoneOffset.UTC), extra);
+        TestCMessage testMessage = new TestCMessage(keyCounter, now.toString(), now.toEpochSecond(ZoneOffset.UTC), extra, "data");
         String key = "k-spring-" + keyCounter;
         kafkaTemplateC.send(KafkaConstants.TOPIC_C, key, testMessage);
         return key;

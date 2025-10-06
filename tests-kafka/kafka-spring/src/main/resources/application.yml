@@ -1,6 +1,15 @@
+
 spring:
   application:
     name: "kafka-spring"
 
   kafka:
     bootstrap-servers: "localhost:9092"
+
+logging:
+  level:
+    root: INFO
+
+myapp:
+  kafka:
+    schema-registry: "http://localhost:8081"

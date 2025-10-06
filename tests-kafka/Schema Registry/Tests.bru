@@ -1,0 +1,15 @@
+meta {
+  name: Tests
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8081/config
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

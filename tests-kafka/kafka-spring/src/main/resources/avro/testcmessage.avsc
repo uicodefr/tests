@@ -22,6 +22,11 @@
             "items" : "string",
             "default": []
         }
+    },
+    {
+        "name": "data",
+        "type": "string",
+        "default": "data"
     }
     ]
 }

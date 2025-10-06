@@ -1,5 +1,8 @@
 package dev.tests.kafka.kafkaspring.message;
 
+import lombok.Data;
+
+@Data
 public class TestBMessage {
 
     private int id;
@@ -7,6 +10,8 @@ public class TestBMessage {
     private String text;
 
     private long timestamp;
+    
+    private String data;
 
     public TestBMessage() {
     }
@@ -15,30 +20,7 @@ public class TestBMessage {
         this.id = id;
         this.text = text;
         this.timestamp = timestamp;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+        this.data = "data";
     }
 
 }

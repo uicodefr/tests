@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Schema Registry",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4267456002669952108L;
+  private static final long serialVersionUID = -6966568322974787615L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestCMessage\",\"namespace\":\"dev.tests.kafka.kafkaspring.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"text\",\"type\":\"string\"},{\"name\":\"timestamp\",\"type\":\"long\"},{\"name\":\"extra\",\"type\":{\"type\":\"array\",\"items\":\"string\",\"default\":[]}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TestCMessage\",\"namespace\":\"dev.tests.kafka.kafkaspring.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"text\",\"type\":\"string\"},{\"name\":\"timestamp\",\"type\":\"long\"},{\"name\":\"extra\",\"type\":{\"type\":\"array\",\"items\":\"string\",\"default\":[]}},{\"name\":\"data\",\"type\":\"string\",\"default\":\"data\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,6 +76,7 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
   private java.lang.CharSequence text;
   private long timestamp;
   private java.util.List<java.lang.CharSequence> extra;
+  private java.lang.CharSequence data;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -90,12 +91,14 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
    * @param text The new value for text
    * @param timestamp The new value for timestamp
    * @param extra The new value for extra
+   * @param data The new value for data
    */
-  public TestCMessage(java.lang.Integer id, java.lang.CharSequence text, java.lang.Long timestamp, java.util.List<java.lang.CharSequence> extra) {
+  public TestCMessage(java.lang.Integer id, java.lang.CharSequence text, java.lang.Long timestamp, java.util.List<java.lang.CharSequence> extra, java.lang.CharSequence data) {
     this.id = id;
     this.text = text;
     this.timestamp = timestamp;
     this.extra = extra;
+    this.data = data;
   }
 
   @Override
@@ -112,6 +115,7 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
     case 1: return text;
     case 2: return timestamp;
     case 3: return extra;
+    case 4: return data;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -125,6 +129,7 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
     case 1: text = (java.lang.CharSequence)value$; break;
     case 2: timestamp = (java.lang.Long)value$; break;
     case 3: extra = (java.util.List<java.lang.CharSequence>)value$; break;
+    case 4: data = (java.lang.CharSequence)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -198,6 +203,23 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /**
+   * Gets the value of the 'data' field.
+   * @return The value of the 'data' field.
+   */
+  public java.lang.CharSequence getData() {
+    return data;
+  }
+
+
+  /**
+   * Sets the value of the 'data' field.
+   * @param value the value to set.
+   */
+  public void setData(java.lang.CharSequence value) {
+    this.data = value;
+  }
+
+  /**
    * Creates a new TestCMessage RecordBuilder.
    * @return A new TestCMessage RecordBuilder
    */
@@ -242,6 +264,7 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
     private java.lang.CharSequence text;
     private long timestamp;
     private java.util.List<java.lang.CharSequence> extra;
+    private java.lang.CharSequence data;
 
     /** Creates a new Builder */
     private Builder() {
@@ -270,6 +293,10 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
         this.extra = data().deepCopy(fields()[3].schema(), other.extra);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
+      if (isValidValue(fields()[4], other.data)) {
+        this.data = data().deepCopy(fields()[4].schema(), other.data);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      }
     }
 
     /**
@@ -293,6 +320,10 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
       if (isValidValue(fields()[3], other.extra)) {
         this.extra = data().deepCopy(fields()[3].schema(), other.extra);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.data)) {
+        this.data = data().deepCopy(fields()[4].schema(), other.data);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -454,6 +485,46 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
       return this;
     }
 
+    /**
+      * Gets the value of the 'data' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getData() {
+      return data;
+    }
+
+
+    /**
+      * Sets the value of the 'data' field.
+      * @param value The value of 'data'.
+      * @return This builder.
+      */
+    public dev.tests.kafka.kafkaspring.avro.TestCMessage.Builder setData(java.lang.CharSequence value) {
+      validate(fields()[4], value);
+      this.data = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'data' field has been set.
+      * @return True if the 'data' field has been set, false otherwise.
+      */
+    public boolean hasData() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'data' field.
+      * @return This builder.
+      */
+    public dev.tests.kafka.kafkaspring.avro.TestCMessage.Builder clearData() {
+      data = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public TestCMessage build() {
@@ -463,6 +534,7 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
         record.text = fieldSetFlags()[1] ? this.text : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.timestamp = fieldSetFlags()[2] ? this.timestamp : (java.lang.Long) defaultValue(fields()[2]);
         record.extra = fieldSetFlags()[3] ? this.extra : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[3]);
+        record.data = fieldSetFlags()[4] ? this.data : (java.lang.CharSequence) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -514,6 +586,8 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
     if (actualSize0 != size0)
       throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
 
+    out.writeString(this.data);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -542,8 +616,10 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
         }
       }
 
+      this.data = in.readString(this.data instanceof Utf8 ? (Utf8)this.data : null);
+
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readInt();
@@ -572,6 +648,10 @@ public class TestCMessage extends org.apache.avro.specific.SpecificRecordBase im
               a0.add(e0);
             }
           }
+          break;
+
+        case 4:
+          this.data = in.readString(this.data instanceof Utf8 ? (Utf8)this.data : null);
           break;
 
         default:
