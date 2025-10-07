@@ -5,35 +5,32 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.tests.kafka.kafkaspring.avro.TestCMessage;
 import dev.tests.kafka.kafkaspring.config.KafkaConstants;
 import dev.tests.kafka.kafkaspring.message.TestBMessage;
+import dev.tests.kafka.kafkaspring.service.FakeService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class MessageKafkaListener {
 
-    private final ObjectMapper jacksonMapper;
+    private final FakeService fakeService;
 
 
     @KafkaListener(topics = KafkaConstants.TOPIC_B)
-    public void listenTopicB(ConsumerRecord<String, TestBMessage> consumerRecord) throws JsonProcessingException {
-        TestBMessage testMessage = consumerRecord.value();
+    public void listenTopicB(ConsumerRecord<String, TestBMessage> consumerRecord) throws JsonProcessingException  {
         String key = consumerRecord.key();
-        String messageJson = jacksonMapper.writeValueAsString(testMessage);
-        log.info("receive B : {} -- {}", key, messageJson);
+        TestBMessage testMessage = consumerRecord.value();
+        fakeService.merge(key, testMessage);
     }
 
     @KafkaListener(topics = KafkaConstants.TOPIC_C, containerFactory = "kafkaListenerContainerAvroFactory")
     public void listenTopicC(ConsumerRecord<String, TestCMessage> consumerRecord) {
-        TestCMessage testMessage = consumerRecord.value();
         String key = consumerRecord.key();
-        log.info("receive C : {} -- {}", key, testMessage);
+        TestCMessage testMessage = consumerRecord.value();
+        fakeService.merge(key, testMessage);
     }
 
 }

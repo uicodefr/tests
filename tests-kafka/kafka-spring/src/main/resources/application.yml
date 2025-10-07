@@ -12,4 +12,5 @@ logging:
 
 myapp:
   kafka:
+    create-topics: true
     schema-registry: "http://localhost:8081"

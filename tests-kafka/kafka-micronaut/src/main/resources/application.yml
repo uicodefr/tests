@@ -9,3 +9,15 @@ micronaut:
 kafka:
   bootstrap:
     servers: "localhost:9092"
+
+  producers:
+    avro-client:
+      key.serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value.serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+      schema.registry.url: "http://localhost:8081"
+  consumers:
+    avro-listener:
+      key.deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      value.deserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
+      schema.registry.url: "http://localhost:8081"
+      specific.avro.reader: true

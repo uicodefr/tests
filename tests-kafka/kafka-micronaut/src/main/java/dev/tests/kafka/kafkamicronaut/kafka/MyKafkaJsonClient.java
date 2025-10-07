@@ -7,8 +7,8 @@ import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.Topic;
 
-@KafkaClient
-public interface MyKafkaClient {
+@KafkaClient("json-client")
+public interface MyKafkaJsonClient {
 
     @Topic(KafkaConstants.TOPIC_A)
     void sendMessageA(@KafkaKey String key, TestAMessage message);

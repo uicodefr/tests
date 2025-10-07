@@ -1,0 +1,32 @@
+{
+    "type": "record",
+    "name": "TestCMessage",
+    "namespace": "dev.tests.kafka.kafkaspring.avro",
+    "fields": [
+    {
+        "name": "id",
+        "type": "int"
+    },
+    {
+        "name": "text",
+        "type": "string"
+    },
+    {
+        "name": "timestamp",
+        "type": "long"
+    },
+    {
+        "name": "extra",
+        "type": {
+            "type": "array",
+            "items" : "string",
+            "default": []
+        }
+    },
+    {
+        "name": "data",
+        "type": "string",
+        "default": "data"
+    }
+    ]
+}

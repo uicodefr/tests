@@ -11,4 +11,6 @@ public final class KafkaConstants {
 
     public static final String TOPIC_B = "topic-b";
 
+    public static final String TOPIC_C = "topic-avro-c";
+
 }

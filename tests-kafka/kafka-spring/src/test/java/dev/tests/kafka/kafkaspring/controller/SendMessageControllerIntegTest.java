@@ -2,8 +2,10 @@ package dev.tests.kafka.kafkaspring.controller;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.avro.util.Utf8;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -133,9 +135,8 @@ class SendMessageControllerIntegTest {
         Assertions.assertThat(testCMessage.getId()).isPositive();
         Assertions.assertThat(testCMessage.getText()).isNotBlank();
         Assertions.assertThat(testCMessage.getTimestamp()).isPositive();
-        // FIXME Why theses assertions because is not String.class but Utf8.class
-        //Assertions.assertThat(testCMessage.getExtra()).hasSameElementsAs(List.of("abc", "def"));
-        //Assertions.assertThat(testCMessage.getData()).isEqualTo("data");
+        Assertions.assertThat(testCMessage.getExtra()).hasSameElementsAs(List.of(new Utf8("abc"), new Utf8("def")));
+        Assertions.assertThat(testCMessage.getData()).isEqualTo(new Utf8("data"));
     }
 
 }

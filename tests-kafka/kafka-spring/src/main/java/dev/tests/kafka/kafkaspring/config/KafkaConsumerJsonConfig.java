@@ -40,6 +40,7 @@ public class KafkaConsumerJsonConfig {
     ) {
         ConcurrentKafkaListenerContainerFactory<String, TestBMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerJsonFactory);
+        factory.setAutoStartup(true);
         factory.setConcurrency(2);
         return factory;
     }

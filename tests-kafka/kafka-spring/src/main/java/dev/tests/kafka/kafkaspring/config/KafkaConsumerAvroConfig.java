@@ -46,6 +46,7 @@ public class KafkaConsumerAvroConfig {
     ) {
         ConcurrentKafkaListenerContainerFactory<String, TestCMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerAvroFactory);
+        factory.setAutoStartup(true);
         factory.setConcurrency(2);
         return factory;
     }

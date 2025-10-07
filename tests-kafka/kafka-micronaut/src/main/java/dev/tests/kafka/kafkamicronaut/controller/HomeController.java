@@ -1,22 +1,19 @@
 package dev.tests.kafka.kafkamicronaut.controller;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class HomeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-    
     @Get(produces = MediaType.TEXT_PLAIN)
     public String home() {
-        logger.info("OK");
+        log.info("OK");
         return "OK";
     }
-    
+
 }

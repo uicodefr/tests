@@ -1,7 +1,9 @@
 package dev.tests.kafka.kafkamicronaut.message;
 
 import io.micronaut.serde.annotation.Serdeable;
+import lombok.Data;
 
+@Data
 @Serdeable
 public class TestAMessage {
 
@@ -9,28 +11,15 @@ public class TestAMessage {
 
     private String text;
 
+    private String data;
+
     public TestAMessage() {
     }
 
     public TestAMessage(int id, String text) {
         this.id = id;
         this.text = text;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+        this.data = "data";
     }
 
 }
