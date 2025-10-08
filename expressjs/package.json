@@ -1,0 +1,30 @@
+{
+    "name": "expressjs",
+    "version": "1.0.0",
+    "description": "Test with Express.Js",
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "serve": "nodemon",
+        "build": "npx tsc",
+        "start": "npx tsc && node dist/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "npx eslint"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^17.2.3",
+        "express": "^5.1.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.37.0",
+        "@types/dotenv": "^6.1.1",
+        "@types/express": "^5.0.3",
+        "eslint": "^9.37.0",
+        "nodemon": "^3.1.10",
+        "prettier": "3.6.2",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.46.0"
+    }
+}
